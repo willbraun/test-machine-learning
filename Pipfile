@@ -9,6 +9,7 @@ sklearn = "*"
 numpy = "*"
 pandas = "*"
 matplotlib = "*"
+tensorflow-probability = "*"
 
 [dev-packages]
 

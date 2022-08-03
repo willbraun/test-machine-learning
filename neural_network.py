@@ -20,3 +20,6 @@ plt.colorbar()
 plt.grid(False)
 plt.show()
 
+# Data preprocessing to get data between 0 and 1
+train_images = train_images / 255.0
+test_images = test_images / 255.0

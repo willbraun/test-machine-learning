@@ -7,8 +7,9 @@ import matplotlib.pyplot as plt
 
 fashion_mnist = keras.datasets.fashion_mnist # Load Fashion MNIST dataset
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data() # split into training and testing
+print(train_images[:5])
 
-class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal", "Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
 # show test image with pyplot
 # plt.figure()
@@ -31,8 +32,18 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy', 
               metrics=['accuracy']) # these are hyperparameters
 
-model.fit(train_images, train_labels, epochs=5)
+model.fit(train_images, train_labels, epochs=2)
 
 test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=1)
 
 print('Test accuracy:', test_acc)
+
+predictions = model.predict(test_images)
+
+# argmax returns the index of the highest value in the list
+print(class_names[np.argmax(predictions[0])]) 
+plt.figure()
+plt.imshow(test_images[0])
+plt.colorbar()
+plt.grid(False)
+plt.show()
